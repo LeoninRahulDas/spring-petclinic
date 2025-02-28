@@ -7,9 +7,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task: UseJavaVersion@1
+  - task: JavaToolInstaller@0
     inputs:
-      version: '11'
+      versionSpec: '11'
+      jdkArchitecture: 'x64'
 
   - task: Maven@3
     inputs:
