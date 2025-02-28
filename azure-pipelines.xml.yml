@@ -7,10 +7,19 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task: JavaToolInstaller@0
+  - checkout: self
+    fetchDepth: 0  # Ensures full repository history
+
+  - task: JavaToolInstaller@1
     inputs:
       versionSpec: '11'
       jdkArchitecture: 'x64'
+      jdkSource: 'PreInstalled'
+
+  - script: |
+      java -version
+      echo "Java is installed"
+    displayName: 'Verify Java Installation'
 
   - task: Maven@3
     inputs:
